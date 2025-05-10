@@ -451,6 +451,9 @@ func (c *Client) AddTorrentFromUrlCtx(ctx context.Context, url string, options m
 		return errors.New("no torrent url provided")
 	}
 
+	if options == nil {
+		options = make(map[string]string)
+	}
 	options["urls"] = url
 
 	res, err := c.postCtx(ctx, "torrents/add", options)
